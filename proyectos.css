@@ -1,0 +1,154 @@
+body{
+	font-family: arial;
+}
+
+div.contenedor_requerimiento{
+	display: flex;
+	flex-direction: row;
+	
+	border: 1px solid #333333;
+}
+
+div.contenedor_historia{
+	display: flex;
+	flex-direction: row;
+	
+	border: 1px dotted #333333;
+}
+
+#divSprints{
+	display: flex;
+	flex-direction: row;
+	border: 2px solid grey;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+#divDesarrollo{
+	display: flex;
+	flex-direction: row;
+	border: 2px solid blue;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+#divImplantacion{
+	border: 2px solid yellow;
+	display: flex;
+	justify-content: center;
+  	align-items: center;
+	min-width: 5em;
+}
+
+#divTests{
+	display: flex;
+	flex-direction: column;
+	border: 2px solid pink;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+#divEquipos{
+	display: flex;
+	flex-direction: row;
+	border: 2px solid green;
+	margin: 0.5em;
+	padding: 0.5em;
+}
+
+div.sprint{
+	border: 1px solid gray;
+	margin: 0.2em;
+	padding: 0.2em;
+	background-color: grey;
+}
+
+div.sprint.activo{
+	background-color: lime;
+	cursor: pointer;
+}
+
+div.requerimiento {
+	margin: 0.5em;
+	padding: 0.5em;
+	min-height: 3em;
+	border: 1px solid green;
+}
+
+div.equipo{
+	border: 1px solid green;
+	margin: 0.5em;
+	padding: 0.5em;
+	background-color: green;
+	cursor: pointer;
+}
+
+div.historias{
+	border: 2px solid red;
+	margin: 0.3em;
+	padding: 0.3em;
+}
+
+div.historia{
+	border: 2px solid red;
+	margin: 0.1em;
+	padding: 0.1em;
+
+}
+
+div.componentes{
+	border: 2px solid black;
+	margin: 0.3em;
+	padding: 0.3em;
+}
+
+div.componente{
+	border: 2px solid red;
+	margin: 0.3em;
+	padding: 0.3em;
+}
+
+div.testSuite{
+	border: 2px solid black;
+	margin: 0.3em;
+	padding: 0.3em;
+}
+
+/* Material Design Icons - https://material.io */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(iconos/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(iconos/MaterialIcons-Regular.woff2) format('woff2'),
+    url(iconos/MaterialIcons-Regular.woff) format('woff'),
+    url(iconos/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  /*font-size: 24px;*/  /* Preferred icon size */
+  font-size: 1em;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

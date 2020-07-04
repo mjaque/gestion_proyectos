@@ -1,0 +1,112 @@
+{
+  "id": "dc1cda88-6a08-496d-b769-972ea8f70cb0",
+  "version": "2.0",
+  "name": "gestion_proyectos",
+  "url": "http://localhost/gestion_proyectos/",
+  "tests": [{
+    "id": "e30257b6-4a5a-4082-8c99-b76b8eef4cd4",
+    "name": "T1. Portada",
+    "commands": [{
+      "id": "b4114446-e1ae-4287-9a6d-f65485db8ea3",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8340dbbb-ab19-4a8c-883f-5db4b71ab26c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1024x768",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "820bcc98-044e-4d1c-8fe1-6fb7829e7b2f",
+      "comment": "",
+      "command": "assertText",
+      "target": "//h1",
+      "targets": [],
+      "value": "Gestión de Proyectos"
+    }, {
+      "id": "cd70b771-fc86-4e84-8275-67e393c4be4c",
+      "comment": "",
+      "command": "assertTitle",
+      "target": "Gestión de Proyectos",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5fdd0ab6-2c74-425b-9494-851bb3883fbc",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "3a523de5-75a3-4f2f-8c7e-6d89395dfa9b",
+    "name": "T2. Iniciar",
+    "commands": [{
+      "id": "0df86032-1f32-4c2b-8769-7d82c8817223",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4b820d8c-b959-4671-90ef-24f20fa3d42c",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a751d35b-a4f2-4370-829f-2ef60f9c67ef",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=R1",
+      "targets": [
+        ["id=R1", "id"],
+        ["css=#R1", "css:finder"],
+        ["xpath=//div[@id='R1']", "xpath:attributes"],
+        ["xpath=//div[@id='divRequerimientos']/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": "euro_symbolR1"
+    }, {
+      "id": "0b15ed06-0ad7-4ae9-88b5-9a7fc09c3207",
+      "comment": "",
+      "command": "assertText",
+      "target": "id=S1",
+      "targets": [
+        ["id=S1", "id"],
+        ["css=#S1", "css:finder"],
+        ["xpath=//div[@id='S1']", "xpath:attributes"],
+        ["xpath=//div[@id='divSprints']/div", "xpath:idRelative"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": "hourglass_emptyS1"
+    }, {
+      "id": "f5b9571e-c54b-4f6e-a346-78aa9158f98d",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "abb01f57-eaa5-4e42-bf2c-6475e5e6d263",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e30257b6-4a5a-4082-8c99-b76b8eef4cd4"]
+  }],
+  "urls": ["http://localhost/gestion_proyectos/"],
+  "plugins": []
+}

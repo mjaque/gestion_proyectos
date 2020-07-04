@@ -5,26 +5,26 @@ window.onload = alCargar
 let conf = {
 	'sprints' : {
 		'media' : 8,
-		'desviacion_tipica' : 0.5
+		'desviacion_tipica' : 0
 	}
 	,'requerimientos' : {
 		'media' : 3,
-		'desviacion_tipica' : 0.25,
-		'p_error': 0.3
+		'desviacion_tipica' : 0,
+		'p_error': 0
 	},
 	'historias' : {
 		'media' : 3,
-		'desviacion_tipica' : 0.5,
-		'p_error': 0.2
+		'desviacion_tipica' : 0,
+		'p_error': 0
 	},
 	'componentes' : {
 		'media' : 3,
-		'desviacion_tipica' : 0.5,
-		'p_error': 0.2
+		'desviacion_tipica' : 0,
+		'p_error': 0
 	},
 	'equipos' : {
-		'media' : 3,
-		'desviacion_tipica' : 0.5
+		'media' : 4,
+		'desviacion_tipica' : 0
 	}
 }
 
@@ -37,6 +37,8 @@ class Juego{
 		this.sprints = this.generar(Sprint)
 		this.requerimientos = this.generar(Requerimiento)
 		this.equipos = this.generar(Equipo)
+		this.repositorio = new Set()
+		this.explotacion = new Set()
 	}
 	
 	iniciar(){
@@ -46,12 +48,12 @@ class Juego{
 	}
 	
 	ejecutar(sprint){
-		for(let i=0; i < this.equipos.length; i++)
-			if (this.equipos[i].asignadoA != null)
-				if (this.equipos[i].asignadoA == 'implantación')
-					console.log('TODO: Ejecutar implantación')
+		for(let equipo of this.equipos)
+			if (equipo.asignadoA != null)
+				if (equipo.asignadoA == 'implantación')
+					juego.implantar()
 				else
-					this.equipos[i].asignadoA.ejecutar()
+					equipo.asignadoA.ejecutar()
 		
 		//Cambio de Sprint
 		sprint.desactivar()
@@ -62,12 +64,23 @@ class Juego{
 			juego.terminarPorTiempo()
 	}
 	
+	implantar(){
+	//Pasamos los componentes desarrollados al repositorio
+		let divRepositorio = document.getElementById('divRepositorio')
+		for(let requerimiento of this.requerimientos)
+			for(let historia of requerimiento.historias)
+				for(let componente of historia.componentes)
+					if (componente.div != null)
+						if (componente.estado != 'pendiente')
+							divRepositorio.appendChild(componente.div.cloneNode(true))
+	}
+	
 	generar(clase){
 		let resultado = []
 		let componente = clase.name.toLowerCase() + 's'
 		let numComponentes = random_normal(conf[componente].media, conf[componente].desviacion_tipica)
 		for(let i = 0; i < numComponentes; i++)
-			resultado.push(new clase(`${clase.name.charAt(0)}${i+1}`))
+			resultado.push(new clase())
 			
 		return resultado
 	}
@@ -81,8 +94,9 @@ class Juego{
 		let divSprints = document.createElement('div')
 		divPrincipal.appendChild(divSprints)
 		divSprints.id = 'divSprints'
-		for(let i=0; i<this.sprints.length; i++){
-			divSprints.appendChild(this.sprints[i].crearDiv(i==0))
+		let i = 0
+		for(let sprint of this.sprints){
+			divSprints.appendChild(sprint.crearDiv(i++ == 0))
 		}
 		
 		//Desarrollo: Requerimientos-Historias-Componentes
@@ -92,30 +106,42 @@ class Juego{
 		let divRequerimientos = document.createElement('div')
 		divDesarrollo.appendChild(divRequerimientos)
 		divRequerimientos.id = 'divRequerimientos'
-		for(let i=0; i<this.requerimientos.length; i++)
-			divRequerimientos.appendChild(this.requerimientos[i].crearDiv())
+		for(let requerimiento of this.requerimientos)
+			divRequerimientos.appendChild(requerimiento.crearDiv())
 			
 		//Div de Implantación
 		let divImplantacion = document.createElement('div')
-		divImplantacion.id = 'divImplantacion'
 		divDesarrollo.appendChild(divImplantacion)
+		divImplantacion.id = 'divImplantacion'
+		
+		let divRepositorio = document.createElement('div')
+		divRepositorio.id = 'divRepositorio'
+		divImplantacion.appendChild(divRepositorio)
 		let img1 = document.createElement('img')
-		divImplantacion.appendChild(img1)
-		img1.setAttribute('src', 'arrow.svg')
+		divRepositorio.appendChild(img1)
+		img1.setAttribute('src', 'repositorio.svg')
+		
 		let img2 = document.createElement('img')
 		divImplantacion.appendChild(img2)
-		img2.setAttribute('src', 'repositorio.svg')
+		img2.setAttribute('src', 'arrow.svg')
+		
+		let divExplotacion = document.createElement('div')
+		divExplotacion.id = 'divExplotacion'
+		divImplantacion.appendChild(divExplotacion)
+		let img3 = document.createElement('img')
+		divExplotacion.appendChild(img3)
+		img3.setAttribute('src', 'entorno_explotacion.svg')
+		
 		//Drop
 		divImplantacion.ondragover = function(evento){
 			evento.preventDefault()
 		}
-		
 		divImplantacion.ondrop = function(evento){
 			//Efecto gráfico
 			evento.preventDefault()
-  			let id = evento.target.id
+  			let id = evento.currentTarget.id
   			let idEquipo = evento.dataTransfer.getData('equipo')
-			evento.target.appendChild(document.getElementById(idEquipo))
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
 
 			//Asignación de Equipo			
   			let equipo = juego.buscarEquipoPorId(idEquipo)
@@ -126,15 +152,15 @@ class Juego{
 		let divTests = document.createElement('div')
 		divTests.id = 'divTests'
 		divDesarrollo.appendChild(divTests)
-		for(let i=0; i<this.requerimientos.length; i++)
-			divTests.appendChild(this.crearDivTest(this.requerimientos[i]))
+		for(let requerimiento of this.requerimientos)
+			divTests.appendChild(this.crearDivTest(requerimiento))
 		
 		//Equipos
 		let divEquipo = document.createElement('div')
 		divEquipo.id = 'divEquipos'
 		document.getElementsByTagName('body')[0].appendChild(divEquipo)
-		for(let i=0; i<this.equipos.length; i++)
-			divEquipo.appendChild(this.equipos[i].crearDiv())	
+		for(let equipo of this.equipos)
+			divEquipo.appendChild(equipo.crearDiv())	
 	}
 	
 	crearDivTest(requerimiento){
@@ -160,36 +186,42 @@ class Juego{
 	}
 
 	buscarHistoriaPorId(id){
-		for(let i = 0; i < this.requerimientos.length; i++)
+		for(let requerimiento of this.requerimientos)
 			try{
-				return this.buscarEnArrayPorId(this.requerimientos[i].historias, id)
+				return this.buscarEnArrayPorId(requerimiento.historias, id)
 			}catch(excepcion){}
 		throw `${id} no encontrado.`
 	}
 
 	buscarComponentePorId(id){
-		for(let i = 0; i < this.requerimientos.length; i++)
-			for(let j = 0; j < this.requerimientos[i].historias.length; j++)
+		for(let requerimiento of this.requerimientos)
+			for(let historia of requerimiento.historias)
 				try{
-					return this.buscarEnArrayPorId(this.requerimientos[i].historias[j].componentes, id)
+					return this.buscarEnArrayPorId(historia.componentes, id)
 				}catch(excepcion){}
 		throw `${id} no encontrado.`
 	}
 	
 	buscarEnArrayPorId(array, id){
-		for(let i = 0; i < array.length; i++)
-			if (array[i].id == id)
-				return array[i]
+		for(let objeto of array)
+			if (objeto.id == id)
+				return objeto
 		throw `${id} no encontrado.`
 	}
 }
 
-
-class Sprint{
-	constructor(id){
-		this.id = id
-		this.activo = false
+//Clase General de la que derivan el resto
+class General{
+	constructor(){
+		this.id = this.constructor.name.charAt(0) + this.constructor.indice++
 		this.div = null
+	}
+}
+
+class Sprint extends General{
+	constructor(){
+		super()
+		this.activo = false
 	}
 	
 	crearDiv(activo){
@@ -222,13 +254,13 @@ class Sprint{
 		this.onclick = null;
 	}
 }
-
-class Requerimiento{
-	constructor(id){
-		this.id = id
-		this.div = null
+Sprint.indice = 1
+	
+class Requerimiento extends General{
+	constructor(){
+		super()
 		this.historias = []
-		this.estado = 'pendiente'	//pendiente, erróneo, correcto
+		this.estado = 'pendiente'	//pendiente, terminado, erróneo/correcto
 		this.divHistorias = null
 	}
 	
@@ -251,9 +283,9 @@ class Requerimiento{
 		this.div.ondrop = function(evento){
 			//Efecto gráfico
 			evento.preventDefault()
-  			let id = evento.target.id
+  			let id = evento.currentTarget.id
   			let idEquipo = evento.dataTransfer.getData('equipo')
-			evento.target.appendChild(document.getElementById(idEquipo))
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
 
 			//Asignación de Equipo			
   			let equipo = juego.buscarEquipoPorId(idEquipo)
@@ -270,8 +302,7 @@ class Requerimiento{
 	}
 	
 	ejecutar(){		//Análisis del requerimiento
-		if (this.estado == 'correcto') return
-		console.log('Ejecutando Requerimiento ' + this.id)
+		if (this.estado == 'terminado' || this.estado == 'correcto') return
 		
 		//Borrado
 		while (this.divHistorias.firstChild) {
@@ -280,9 +311,9 @@ class Requerimiento{
   		
 		this.historias = juego.generar(Historia)
 		
-		for(let i=0; i<this.historias.length; i++){
-			this.historias[i].requerimiento = this
-			this.divHistorias.appendChild(this.historias[i].crearDiv())
+		for(let historia of this.historias){
+			historia.requerimiento = this
+			this.divHistorias.appendChild(historia.crearDiv())
 		}
 			
 		this.div.appendChild(document.createTextNode(' -?'));
@@ -293,10 +324,11 @@ class Requerimiento{
 			this.estado = 'correcto'*/
 	}
 }
+Requerimiento.indice = 1
 
-class Equipo{
-	constructor(id){
-		this.id = id
+class Equipo extends General{
+	constructor(){
+		super()
 		this.asignadoA = null
 	}
 	
@@ -306,27 +338,22 @@ class Equipo{
 		div.id=this.id
 		div.appendChild(crearIcono('face'))
 		div.appendChild(document.createTextNode(this.id))
-		/*let img = document.createElement('img')
-		div.appendChild(img)
-		img.setAttribute('src', 'equipo.svg')
-		img.setAttribute('draggable', false)
-		*/
 		
 		//Drag
 		div.setAttribute('draggable', true)
 		div.ondragstart = function(evento) {
-			evento.dataTransfer.setData('equipo', evento.target.id)
+			evento.dataTransfer.setData('equipo', evento.currentTarget.id)
 		}
 		return div
 	}
 }
+Equipo.indice = 1
 
-class Historia{
-	constructor(id){
-		this.id = id
-		this.div = null
+class Historia extends General{
+	constructor(){
+		super()
 		this.requerimiento = null	//requerimiento al que pertenece la historia
-		this.estado = 'pendiente'	//pendiente, erróneo, correcto
+		this.estado = 'pendiente'	//pendiente, terminado, erróneo/correcto
 		this.componentes = []
 		this.divComponentes = null
 	}
@@ -357,9 +384,9 @@ class Historia{
 			
 			//Efecto gráfico
 			evento.preventDefault()
-  			let id = evento.target.id
+			let id = evento.currentTarget.id
   			let idEquipo = evento.dataTransfer.getData('equipo')
-			evento.target.appendChild(document.getElementById(idEquipo))
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
 
 			//Asignación de Equipo			
   			let equipo = juego.buscarEquipoPorId(idEquipo)
@@ -379,20 +406,20 @@ class Historia{
   		
 		this.componentes = juego.generar(Componente)
 		
-		for(let i=0; i<this.componentes.length; i++){
-			this.componentes[i].historia = this
-			this.divComponentes.appendChild(this.componentes[i].crearDiv())
+		for(let componente of this.componentes){
+			componente.historia = this
+			this.divComponentes.appendChild(componente.crearDiv())
 		}
 			
 		this.div.appendChild(document.createTextNode(' -?'));
 		this.estado = 'terminado'
 	}
 }
+Historia.indice = 1
 
-class Componente{
-	constructor(id){
-		this.id = id
-		this.div = null
+class Componente extends General{
+	constructor(){
+		super()
 		this.historia = null	//historia a la que pertenece el componente
 		this.estado = 'pendiente'	//pendiente, erróneo, correcto
 	}
@@ -413,9 +440,9 @@ class Componente{
 			
 			//Efecto gráfico
 			evento.preventDefault()
-  			let id = evento.target.id
+  			let id = evento.currentTarget.id
   			let idEquipo = evento.dataTransfer.getData('equipo')
-			evento.target.appendChild(document.getElementById(idEquipo))
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
 
 			//Asignación de Equipo			
   			let equipo = juego.buscarEquipoPorId(idEquipo)
@@ -428,11 +455,25 @@ class Componente{
 		if (this.estado == 'correcto') return
 		console.log('Ejecutando Componente ' + this.id)
 		
-		this.div.appendChild(crearIcono('done'))
-		this.estado = 'correcto'
-
+		//TODO: quitar el icono de resultado si ya tiene uno. O cambiarlo
+		
+		if (Math.random() < conf.componentes.p_error){
+			this.div.appendChild(crearIcono('error'))
+			this.estado = 'erroneo'
+		}
+		else{
+			this.div.appendChild(crearIcono('done'))
+			this.estado = 'correcto'	
+			juego.repositorio.add(this)
+			let divRepositorio = document.getElementById('divRepositorio')
+			let clon = this.div.cloneNode(true)
+			//Quitamos el equipo del clone
+			clon.removeChild(clon.getElementsByClassName('equipo')[0])
+			divRepositorio.appendChild(clon)
+		}
 	}
 }
+Componente.indice = 1
 
 /**
 	Crea un icono de Material Icons de Google
@@ -457,7 +498,8 @@ function crearIcono_old(nombre){
 	Función de distribución de probabilidad normal
 **/
 function random_normal(media, desviacion_tipica){
-	return Math.floor(randn_bm() * desviacion_tipica + media)
+	return 5
+	//return Math.floor(randn_bm() * desviacion_tipica + media)
 }
 
 /**
@@ -474,7 +516,6 @@ function randn_bm() {
 function aleatorio(min, max){
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
-
 
 
 //PROGRAMA PRINCIPAL

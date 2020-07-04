@@ -1,5 +1,7 @@
 body{
 	font-family: arial;
+	background-color: #2B4A6F;
+	color: #cccccc;
 }
 
 div.contenedor_requerimiento{
@@ -34,6 +36,14 @@ div.contenedor_historia{
 
 #divImplantacion{
 	border: 2px solid yellow;
+	display: flex;
+	justify-content: center;
+  	align-items: center;
+	min-width: 5em;
+}
+
+#divRepositorio, #divExplotacion{
+	border: 2px solid blue;
 	display: flex;
 	justify-content: center;
   	align-items: center;

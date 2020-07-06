@@ -148,31 +148,37 @@ class Juego{
   			equipo.asignadoA = 'implantación'
 		}
 
-		//Div de Tests
+		//Tests
 		let divTests = document.createElement('div')
-		divTests.id = 'divTests'
 		divDesarrollo.appendChild(divTests)
+		divTests.id = 'divTests'
 		for(let requerimiento of this.requerimientos)
-			divTests.appendChild(this.crearDivTest(requerimiento))
-		
+			divTests.appendChild(requerimiento.test.crearDiv())
+
 		//Equipos
 		let divEquipo = document.createElement('div')
 		divEquipo.id = 'divEquipos'
 		document.getElementsByTagName('body')[0].appendChild(divEquipo)
 		for(let equipo of this.equipos)
-			divEquipo.appendChild(equipo.crearDiv())	
+			divEquipo.appendChild(equipo.crearDiv())
+			
+		//Drop
+		divEquipo.ondragover = function(evento){
+			evento.preventDefault()
+		}
+		divEquipo.ondrop = function(evento){
+			//Efecto gráfico
+			evento.preventDefault()
+  			let id = evento.currentTarget.id
+  			let idEquipo = evento.dataTransfer.getData('equipo')
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
+
+			//Desasignación		
+  			let equipo = juego.buscarEquipoPorId(idEquipo)
+  			equipo.asignadoA = null
+		}
 	}
 	
-	crearDivTest(requerimiento){
-		let div = document.createElement('div')
-		div.classList.add('testSuite')
-		div.id=`TS${requerimiento.id}`
-		div.appendChild(document.createTextNode(div.id))
-		
-		//Drop
-		return div
-	}
-
 	buscarSprintPorId(id){
 		return this.buscarEnArrayPorId(this.sprints, id)
 	}
@@ -199,6 +205,13 @@ class Juego{
 				try{
 					return this.buscarEnArrayPorId(historia.componentes, id)
 				}catch(excepcion){}
+		throw `${id} no encontrado.`
+	}
+	
+	buscarTestPorId(id){
+		for(let requerimiento of this.requerimientos)
+			if (requerimiento.test.id = id)
+				return requerimiento.test.id
 		throw `${id} no encontrado.`
 	}
 	
@@ -260,6 +273,7 @@ class Requerimiento extends General{
 	constructor(){
 		super()
 		this.historias = []
+		this.test = new Test(this)
 		this.estado = 'pendiente'	//pendiente, terminado, erróneo/correcto
 		this.divHistorias = null
 	}
@@ -297,7 +311,7 @@ class Requerimiento extends General{
 		divContenedor.appendChild(divHistorias)
 		this.divHistorias = divHistorias
 		divHistorias.classList.add('historias')
-		
+				
 		return divContenedor
 	}
 	
@@ -474,6 +488,66 @@ class Componente extends General{
 	}
 }
 Componente.indice = 1
+
+class Test extends General{
+	constructor(requerimiento){
+		super()
+		this.requerimiento = requerimiento		//requerimiento al que corresponde el Test
+		this.estado = 'pendiente'				//pendiente, erróneo, correcto
+	}
+	
+	crearDiv(){
+		this.div = document.createElement('div')
+		this.div.id = this.id
+		this.div.classList.add('testSuite')
+		this.div.appendChild(crearIcono('test'))
+		this.div.appendChild(document.createTextNode(this.div.id))
+		
+		//Drop
+		this.div.ondragover = function(evento){
+			evento.preventDefault()
+		}
+		this.div.ondrop = function(evento){
+			//this es el div que recibe el evento
+			
+			//Efecto gráfico
+			evento.preventDefault()
+  			let id = evento.currentTarget.id
+  			let idEquipo = evento.dataTransfer.getData('equipo')
+			evento.currentTarget.appendChild(document.getElementById(idEquipo))
+
+			//Asignación de Equipo			
+  			let equipo = juego.buscarEquipoPorId(idEquipo)
+  			equipo.asignadoA = juego.buscarTestPorId(id)
+		}
+		
+		return this.div
+	}
+	
+	ejecutar(){		//Desarrollo del Componente
+		if (this.estado == 'correcto') return
+		console.log('Ejecutando Componente ' + this.id)
+		
+		//TODO: quitar el icono de resultado si ya tiene uno. O cambiarlo
+		
+		if (Math.random() < conf.componentes.p_error){
+			this.div.appendChild(crearIcono('error'))
+			this.estado = 'erroneo'
+		}
+		else{
+			this.div.appendChild(crearIcono('done'))
+			this.estado = 'correcto'	
+			juego.repositorio.add(this)
+			let divRepositorio = document.getElementById('divRepositorio')
+			let clon = this.div.cloneNode(true)
+			//Quitamos el equipo del clone
+			clon.removeChild(clon.getElementsByClassName('equipo')[0])
+			divRepositorio.appendChild(clon)
+		}
+	}
+}
+Test.indice = 1
+
 
 /**
 	Crea un icono de Material Icons de Google

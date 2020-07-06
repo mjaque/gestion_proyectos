@@ -540,6 +540,140 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "6ec4e466-e13f-4f1b-9073-e12bee620bd9",
+    "name": "T3.3-1 Reasignar",
+    "commands": [{
+      "id": "de4b6c5f-511b-4576-a4a6-b645b50789df",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6a198c25-33c2-45c4-8934-1acd8f1b4cab",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8634f70a-7ae3-40f2-a16f-ed87fd5f140e",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "0c5743fd-033e-46f2-96e5-2d7bf062d32d",
+      "comment": "Comprobamos si el div R1 tiene un hijo E1",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R1']/div[@id='E1']",
+      "targets": [
+        ["id=R1", "id"],
+        ["css=#R1", "css:finder"],
+        ["xpath=//div[@id='R1']", "xpath:attributes"],
+        ["xpath=//div[@id='divRequerimientos']/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f9c2221-59f1-424a-886c-9766662a4307",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R2"
+    }, {
+      "id": "24e3b7ab-cf1f-47d4-9aa0-544673415fc3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R2']/div[@id='E1']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ab242d7a-4531-470e-b8df-2f6b564ee24d",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "xpath=//div[@id='R1']/div[@id='E1']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56b1ef53-0c31-4b48-aa63-fc27a19f10f3",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "5e1dfad9-100d-47bf-b501-774039d568a0",
+    "name": "T4.1-1 Analizar Requerimiento",
+    "commands": [{
+      "id": "6b00900b-1adf-4ebf-9d8b-e0895444c929",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df3d2588-b007-4738-bd59-79d6633eb691",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9de36ec-cfe5-475c-a7b6-7b952cfde98f",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "d207fd54-cbac-4cf9-b338-e6630d7169b1",
+      "comment": "",
+      "command": "click",
+      "target": "id=S1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "da0a2835-7631-451d-9d6b-4281d3478594",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#H1",
+      "targets": [
+        ["css=#H1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'list')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "64ca82ea-370b-4046-92a6-759d3d2c254f",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=#H5",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4190185e-efed-4d64-89b2-9459c5025241",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "abb01f57-eaa5-4e42-bf2c-6475e5e6d263",

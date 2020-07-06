@@ -98,6 +98,448 @@
       "targets": [],
       "value": ""
     }]
+  }, {
+    "id": "b5be67cc-952a-44f8-a913-90b8da45a4c6",
+    "name": "T3.1-1.1 Asignar a Requerimiento",
+    "commands": [{
+      "id": "87812dde-4c9d-4731-8147-48a4a398ebbb",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bb8ad1e8-337f-433b-ad9b-f8e358336a87",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f2950d52-c02f-44f7-854d-3328b9223d12",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "cc9c52d6-f3e6-40fc-869c-3e95d7271100",
+      "comment": "Comprobamos si el div R1 tiene un hijo E1",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R1']/div[@id='E1']",
+      "targets": [
+        ["id=R1", "id"],
+        ["css=#R1", "css:finder"],
+        ["xpath=//div[@id='R1']", "xpath:attributes"],
+        ["xpath=//div[@id='divRequerimientos']/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "30fc1a9f-93a2-449d-b4b7-293daed9cd25",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d85bf89c-9c2c-4f0c-904e-a8fed379d441",
+    "name": "T3.1-1.2 Asignar a Historia",
+    "commands": [{
+      "id": "1301d203-708c-422e-b819-debe1cdf8c13",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f79ba2e3-574c-4691-a57b-05cdeeff194e",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec870bfa-9481-4fdc-8384-23f6f7a8006b",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "7b96cc47-7b9a-4ff7-96b0-30d70a98085c",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S1 > .material-icons",
+      "targets": [
+        ["css=#S1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S1']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'hourglass_empty')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7b7b7b9-03e1-468f-875b-84befd32e40c",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "b2898505-61b1-4f67-b5fc-4a6db546bd15",
+      "comment": "Comprobamos que H1 tiene un hijo E3",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='H1']/div[@id='E3']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4e08a493-1805-4506-82f2-9887e95b7d6b",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "b76cae03-6aa2-40e4-a971-cd85d2b03db7",
+    "name": "T3.1-1.3 Asignar a Componente",
+    "commands": [{
+      "id": "6f0fc62b-81af-43e4-8bc2-21d1c90e614c",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7e414376-b735-4a9a-9af1-4efb43957e40",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e9c604a8-a07c-497c-8162-a60dbde46e3d",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "a7cd78f3-f99a-4553-af80-242deb6eee71",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S1 > .material-icons",
+      "targets": [
+        ["css=#S1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S1']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'hourglass_empty')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "00998724-d5bb-44db-92fd-a786acf0ed9e",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["id=S2", "id"],
+        ["css=#S2", "css:finder"],
+        ["xpath=//div[@id='S2']", "xpath:attributes"],
+        ["xpath=//div[@id='divSprints']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac1a563b-06d4-4607-bbc6-e8341d87b184",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "f2750cdc-1efb-454d-9b97-ae1191b9411d",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S3 > .material-icons",
+      "targets": [
+        ["css=#S3 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S3']/span", "xpath:idRelative"],
+        ["xpath=//div[3]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b7d0a33-cc26-4605-a75d-afa32fa1e708",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "3a8a0293-7379-4559-884e-0ff5210f0df1",
+      "comment": "Comprobamos que C1 tiene un hijo E2",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='C1']/div[@id='E2']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5f8b2141-b217-440c-9ef7-7901ecf52b87",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "64240ebb-3b31-480e-8b94-9c774d34a113",
+    "name": "T3.1-1.4 Asignar a Implantación",
+    "commands": [{
+      "id": "dcd399be-f5a7-4ebd-b03d-0f4b5f847cd5",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1c4579b3-fc6b-4d00-b269-530a5864c789",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7af57c4b-f0c8-4496-8931-dd551324b63d",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "4932ed2c-b236-47e9-9c09-70dcef574920",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S1 > .material-icons",
+      "targets": [
+        ["css=#S1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S1']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'hourglass_empty')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e98456f4-4608-4faa-9950-aeb29c1ffb66",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["id=S2", "id"],
+        ["css=#S2", "css:finder"],
+        ["xpath=//div[@id='S2']", "xpath:attributes"],
+        ["xpath=//div[@id='divSprints']/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4948e1d0-6c42-4ee8-b0a5-cc8dbff97326",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "3f4a74ab-90d1-4448-9105-3182f593e66f",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S3 > .material-icons",
+      "targets": [
+        ["css=#S3 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S3']/span", "xpath:idRelative"],
+        ["xpath=//div[3]/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63a9f254-4d36-4c2b-a06b-145fd41a873f",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "7d299126-2d6b-49d1-b6a0-5d4091cc75f6",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=divImplantacion"
+    }, {
+      "id": "8932f54a-c612-4c4c-b288-9339b2ceb8eb",
+      "comment": "Comprobamos que divImplantacion tiene un hijo E1",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='divImplantacion']/div[@id='E1']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b8d16ce7-783a-4b88-be96-35d89afd6aa8",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "c5cb51d8-b920-4864-b16d-889aa4a1161c",
+    "name": "T3.2-1 Desasignar",
+    "commands": [{
+      "id": "c4bfaf9e-2c66-4dc7-9282-fa1dcadf31b7",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "72bc8f79-487e-4eef-917e-2cd90f6e91d2",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11c6ba0a-ca70-4db0-a438-0255e31ed312",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "6ee6af7a-e5fb-49be-b29b-d910e52df485",
+      "comment": "Comprobamos si el div R1 tiene un hijo E1",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R1']/div[@id='E1']",
+      "targets": [
+        ["id=R1", "id"],
+        ["css=#R1", "css:finder"],
+        ["xpath=//div[@id='R1']", "xpath:attributes"],
+        ["xpath=//div[@id='divRequerimientos']/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "db5e8b4c-a9d8-436d-835e-1e89ddc89048",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=divEquipos"
+    }, {
+      "id": "a38cfd5e-8547-42fd-90c4-7a4aa4c5a980",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='divEquipos']/div[@id='E1']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aefc2c95-f95d-4228-b32f-190c3eabd617",
+      "comment": "",
+      "command": "assertElementNotPresent",
+      "target": "xpath=//div[@id='R1']/div[@id='E1']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "4f6a6cea-16d5-42ca-8b21-8ae7633d5990",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "44f10ce1-3248-48df-aaa6-7a83dfb2ac65",
+    "name": "T3.1-1.4.5 Asignar a Test",
+    "commands": [{
+      "id": "fc640d0f-9aea-4519-8354-9aa1c1f37385",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1d5263ed-084e-4e30-88d4-30a8fa9b943d",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "23af824e-806b-4a2c-adf3-8d09c7d9a04e",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "68574b97-4623-4058-a6eb-e6382af9938a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#S1 > .material-icons",
+      "targets": [
+        ["css=#S1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='S1']/span", "xpath:idRelative"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'hourglass_empty')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "55f8834b-3424-45c4-90f7-9edee4f82033",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=T2"
+    }, {
+      "id": "32412791-fd16-4c59-98c8-8de2511cc752",
+      "comment": "Comprobamos que T1 tiene un hijo E1",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='T2']/div[@id='E3']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8fa2216f-6cad-49df-89f6-903ecf5d4315",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
   }],
   "suites": [{
     "id": "abb01f57-eaa5-4e42-bf2c-6475e5e6d263",

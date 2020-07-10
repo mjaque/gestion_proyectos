@@ -404,12 +404,12 @@
       "command": "dragAndDropToObject",
       "target": "id=E1",
       "targets": [],
-      "value": "id=divImplantacion"
+      "value": "id=divIntegracion"
     }, {
       "id": "8932f54a-c612-4c4c-b288-9339b2ceb8eb",
       "comment": "Comprobamos que divImplantacion tiene un hijo E1",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divImplantacion']/div[@id='E1']",
+      "target": "xpath=//div[@id='divIntegracion']/div[@id='E1']",
       "targets": [],
       "value": ""
     }, {
@@ -1202,6 +1202,266 @@
       "value": "2"
     }, {
       "id": "5b29712d-b13d-4ad0-a7b5-15fa41351628",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "c996d8d8-9117-4587-814d-3e824d625b84",
+    "name": "T4.4-1 Integración de Componentes",
+    "commands": [{
+      "id": "1ea62d4a-0ad8-4a25-b105-6bc6cce42962",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "55dd2367-b13b-4834-aeb9-0848ec1b0d2e",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cde2106c-6044-4183-8ed8-772e841b7ed0",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "39f110af-4706-4535-9ff5-656928d698b4",
+      "comment": "",
+      "command": "click",
+      "target": "id=S1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "acb7e75c-afec-4935-9021-ba368649e628",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "f9d80f4e-294e-4d49-9c35-de18c7fa5929",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "347da41d-6b3e-4def-bd9d-ca68c6c1b0e2",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "355f6d28-38b9-4483-876a-f3873da09ea4",
+      "comment": "",
+      "command": "click",
+      "target": "id=S3",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b2ab3ac1-74c2-47b1-9aa9-92dda77dbc9a",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=divIntegracion"
+    }, {
+      "id": "0ec57fe4-3d6d-46f6-a43b-30a78d0c0bed",
+      "comment": "",
+      "command": "click",
+      "target": "id=S4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a92a9329-9eae-4422-ae1c-39fa1f4cbb08",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "targets": [
+        ["css=#H1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'list')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3dc7a137-414f-4f03-b017-03dde4d552ed",
+      "comment": "",
+      "command": "//assertElementPresent",
+      "target": "xpath=//div[@id='H1']/following-sibling::div[@class='componentes']/div[@id='C5']",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e316423-84ca-430f-ab5b-201e7bfc94a6",
+      "comment": "",
+      "command": "//storeXpathCount",
+      "target": "xpath=//div[@id='H1']/following-sibling::div[@class='componentes']/div[@class='componente']",
+      "targets": [],
+      "value": "numComponentes"
+    }, {
+      "id": "edd71c51-0da2-4f22-87d2-89dc8b85221f",
+      "comment": "",
+      "command": "//verify",
+      "target": "numComponentes",
+      "targets": [],
+      "value": "5"
+    }, {
+      "id": "14129941-a319-4dea-8470-20eb1cc85fc4",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "69d31023-5432-4f31-9484-ee741902060f",
+    "name": "T4.4-2 Reintegración de Componentes",
+    "commands": [{
+      "id": "5b8abe00-b7ce-45ab-9591-fc1fad1e6bfa",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b757bb24-b9f0-456e-ba8b-efe11da07bc4",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "176b97b6-7233-4cde-8ff9-435be2dcb9fa",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "adaffaaf-7cf2-45c0-8dab-3fc5cbe77639",
+      "comment": "",
+      "command": "click",
+      "target": "id=S1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5f1fe924-8afe-4690-928d-0eb698f404b3",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "c8eec2e3-393b-4493-aefb-9e23dd8417cb",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ee66a41-a878-40ab-aa28-47418c15fdb4",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "3841ac3d-0911-490a-bb95-793e2d4fac3c",
+      "comment": "",
+      "command": "click",
+      "target": "id=S3",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0500de8d-62d5-4d32-b1d0-08581ab7f458",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=divIntegracion"
+    }, {
+      "id": "64ee75ce-9c91-4c2e-a86c-c29db76b969e",
+      "comment": "",
+      "command": "click",
+      "target": "id=S4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b4330f43-a546-400a-a17b-f0d3c77864a4",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "targets": [
+        ["css=#H1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'list')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1354a4ee-b1ad-4c37-93ae-106960ac317f",
+      "comment": "",
+      "command": "click",
+      "target": "id=S5",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b310d013-f786-44a1-8f1d-b5ea6597439a",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "targets": [
+        ["css=#H1 > .material-icons", "css:finder"],
+        ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/span", "xpath:position"],
+        ["xpath=//span[contains(.,'list')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4662d8d7-4f97-4e69-8b8c-f2d3e0e53923",
+      "comment": "",
+      "command": "storeXpathCount",
+      "target": "xpath=//div[@id='divExplotacion']",
+      "targets": [],
+      "value": "numComponentes"
+    }, {
+      "id": "08ce4b1a-4f3e-4a9d-8a67-457739257309",
+      "comment": "",
+      "command": "verify",
+      "target": "numComponentes",
+      "targets": [],
+      "value": "1"
+    }, {
+      "id": "42eccdd8-bbab-44a3-b84d-c7d9408556ac",
       "comment": "",
       "command": "close",
       "target": "",

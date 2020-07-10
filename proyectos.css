@@ -34,7 +34,7 @@ div.contenedor_historia{
 	padding: 0.5em;
 }
 
-#divImplantacion{
+#divIntegracion{
 	border: 2px solid yellow;
 	display: flex;
 	justify-content: center;

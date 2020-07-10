@@ -50,8 +50,8 @@ class Juego{
 	ejecutar(sprint){
 		for(let equipo of this.equipos)
 			if (equipo.asignadoA != null)
-				if (equipo.asignadoA == 'implantación')
-					juego.implantar()
+				if (equipo.asignadoA == 'integracion')
+					juego.integrar()
 				else
 					equipo.asignadoA.ejecutar()
 		
@@ -64,15 +64,16 @@ class Juego{
 			juego.terminarPorTiempo()
 	}
 	
-	implantar(){
-	//Pasamos los componentes desarrollados al repositorio
-		let divRepositorio = document.getElementById('divRepositorio')
-		for(let requerimiento of this.requerimientos)
-			for(let historia of requerimiento.historias)
-				for(let componente of historia.componentes)
-					if (componente.div != null)
-						if (componente.estado != 'pendiente')
-							divRepositorio.appendChild(componente.div.cloneNode(true))
+	integrar(){
+	//Pasamos los componentes del repositorio al entorno de explotación
+		for(let componente of this.repositorio)
+			this.explotacion.add(componente)
+		//Quitamos los componentes del entorno de explotación y los volvemos a poner
+		let divExplotacion = document.getElementById('divExplotacion')
+		while(divExplotacion.childNodes.length > 2)	//Dejamos la imagen
+			divExplotacion.removeChild(divExplotacion.lastChild)
+		for(let componente of this.explotacion)
+			divExplotacion.appendChild(componente.div.cloneNode(true))
 	}
 	
 	generar(clase){
@@ -109,34 +110,34 @@ class Juego{
 		for(let requerimiento of this.requerimientos)
 			divRequerimientos.appendChild(requerimiento.crearDiv())
 			
-		//Div de Implantación
-		let divImplantacion = document.createElement('div')
-		divDesarrollo.appendChild(divImplantacion)
-		divImplantacion.id = 'divImplantacion'
+		//Div de Integracion
+		let divIntegracion = document.createElement('div')
+		divDesarrollo.appendChild(divIntegracion)
+		divIntegracion.id = 'divIntegracion'
 		
 		let divRepositorio = document.createElement('div')
 		divRepositorio.id = 'divRepositorio'
-		divImplantacion.appendChild(divRepositorio)
+		divIntegracion.appendChild(divRepositorio)
 		let img1 = document.createElement('img')
 		divRepositorio.appendChild(img1)
 		img1.setAttribute('src', 'repositorio.svg')
 		
 		let img2 = document.createElement('img')
-		divImplantacion.appendChild(img2)
+		divIntegracion.appendChild(img2)
 		img2.setAttribute('src', 'arrow.svg')
 		
 		let divExplotacion = document.createElement('div')
 		divExplotacion.id = 'divExplotacion'
-		divImplantacion.appendChild(divExplotacion)
+		divIntegracion.appendChild(divExplotacion)
 		let img3 = document.createElement('img')
 		divExplotacion.appendChild(img3)
 		img3.setAttribute('src', 'entorno_explotacion.svg')
 		
 		//Drop
-		divImplantacion.ondragover = function(evento){
+		divIntegracion.ondragover = function(evento){
 			evento.preventDefault()
 		}
-		divImplantacion.ondrop = function(evento){
+		divIntegracion.ondrop = function(evento){
 			//Efecto gráfico
 			evento.preventDefault()
   			let id = evento.currentTarget.id
@@ -145,7 +146,7 @@ class Juego{
 
 			//Asignación de Equipo			
   			let equipo = juego.buscarEquipoPorId(idEquipo)
-  			equipo.asignadoA = 'implantación'
+  			equipo.asignadoA = 'integracion'
 		}
 
 		//Tests

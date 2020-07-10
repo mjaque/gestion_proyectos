@@ -4,26 +4,26 @@ window.onload = alCargar
 
 let conf = {
 	'sprints' : {
-		'media' : 8,
+		'media' : 10,
 		'desviacion_tipica' : 0
 	}
 	,'requerimientos' : {
-		'media' : 3,
+		'media' : 2,
 		'desviacion_tipica' : 0,
 		'p_error': 0
 	},
 	'historias' : {
-		'media' : 3,
+		'media' : 2,
 		'desviacion_tipica' : 0,
 		'p_error': 0
 	},
 	'componentes' : {
-		'media' : 3,
+		'media' : 2,
 		'desviacion_tipica' : 0,
 		'p_error': 0
 	},
 	'equipos' : {
-		'media' : 4,
+		'media' : 5,
 		'desviacion_tipica' : 0
 	}
 }
@@ -274,7 +274,6 @@ class Requerimiento extends General{
 		super()
 		this.historias = []
 		this.test = new Test(this)
-		this.estado = 'pendiente'	//pendiente, terminado, erróneo/correcto
 		this.divHistorias = null
 	}
 	
@@ -316,7 +315,8 @@ class Requerimiento extends General{
 	}
 	
 	ejecutar(){		//Análisis del requerimiento
-		if (this.estado == 'terminado' || this.estado == 'correcto') return
+		//Si ya ha sido ejecutado, no se repite
+		if (this.historias.length > 0) return
 		
 		//Borrado
 		while (this.divHistorias.firstChild) {
@@ -367,7 +367,6 @@ class Historia extends General{
 	constructor(){
 		super()
 		this.requerimiento = null	//requerimiento al que pertenece la historia
-		this.estado = 'pendiente'	//pendiente, terminado, erróneo/correcto
 		this.componentes = []
 		this.divComponentes = null
 	}
@@ -410,9 +409,9 @@ class Historia extends General{
 	}
 	
 	ejecutar(){		//Diseño de la Historia
-		if (this.estado == 'correcto') return
-		console.log('Ejecutando Historia ' + this.id)
-		
+		//Si ya ha sido ejecutado, no se repite
+		if (this.componentes.length > 0) return
+
 		//Borrado del divComponentes
 		while (this.divComponentes.firstChild) {
     		this.divComponentes.removeChild(this.divComponentes.lastChild);
@@ -435,7 +434,6 @@ class Componente extends General{
 	constructor(){
 		super()
 		this.historia = null	//historia a la que pertenece el componente
-		this.estado = 'pendiente'	//pendiente, erróneo, correcto
 	}
 	
 	crearDiv(){
@@ -466,16 +464,17 @@ class Componente extends General{
 	}
 	
 	ejecutar(){		//Desarrollo del Componente
-		if (this.estado == 'correcto') return
-		console.log('Ejecutando Componente ' + this.id)
+		
+		//Si ya está en el respositorio, no hacemos nada
+		if (juego.repositorio.has(this)) return
 		
 		//TODO: quitar el icono de resultado si ya tiene uno. O cambiarlo
-		
+		/*
 		if (Math.random() < conf.componentes.p_error){
 			this.div.appendChild(crearIcono('error'))
 			this.estado = 'erroneo'
 		}
-		else{
+		else{*/
 			this.div.appendChild(crearIcono('done'))
 			this.estado = 'correcto'	
 			juego.repositorio.add(this)
@@ -484,7 +483,7 @@ class Componente extends General{
 			//Quitamos el equipo del clone
 			clon.removeChild(clon.getElementsByClassName('equipo')[0])
 			divRepositorio.appendChild(clon)
-		}
+		//}
 	}
 }
 Componente.indice = 1
@@ -493,7 +492,6 @@ class Test extends General{
 	constructor(requerimiento){
 		super()
 		this.requerimiento = requerimiento		//requerimiento al que corresponde el Test
-		this.estado = 'pendiente'				//pendiente, erróneo, correcto
 	}
 	
 	crearDiv(){
@@ -525,25 +523,8 @@ class Test extends General{
 	}
 	
 	ejecutar(){		//Desarrollo del Componente
-		if (this.estado == 'correcto') return
-		console.log('Ejecutando Componente ' + this.id)
 		
-		//TODO: quitar el icono de resultado si ya tiene uno. O cambiarlo
-		
-		if (Math.random() < conf.componentes.p_error){
-			this.div.appendChild(crearIcono('error'))
-			this.estado = 'erroneo'
-		}
-		else{
-			this.div.appendChild(crearIcono('done'))
-			this.estado = 'correcto'	
-			juego.repositorio.add(this)
-			let divRepositorio = document.getElementById('divRepositorio')
-			let clon = this.div.cloneNode(true)
-			//Quitamos el equipo del clone
-			clon.removeChild(clon.getElementsByClassName('equipo')[0])
-			divRepositorio.appendChild(clon)
-		}
+		console.log("PENDIENTE")
 	}
 }
 Test.indice = 1
@@ -572,8 +553,7 @@ function crearIcono_old(nombre){
 	Función de distribución de probabilidad normal
 **/
 function random_normal(media, desviacion_tipica){
-	return 5
-	//return Math.floor(randn_bm() * desviacion_tipica + media)
+	return Math.floor(randn_bm() * desviacion_tipica + media)
 }
 
 /**

@@ -72,8 +72,13 @@ class Juego{
 		let divExplotacion = document.getElementById('divExplotacion')
 		while(divExplotacion.childNodes.length > 2)	//Dejamos la imagen
 			divExplotacion.removeChild(divExplotacion.lastChild)
-		for(let componente of this.explotacion)
-			divExplotacion.appendChild(componente.div.cloneNode(true))
+		for(let componente of this.explotacion){
+			//Quitamos el equipo del clone
+			let clon = componente.div.cloneNode(true)
+			if (clon.getElementsByClassName('equipo').length > 0)
+				clon.removeChild(clon.getElementsByClassName('equipo')[0])
+			divExplotacion.appendChild(clon)
+		}
 	}
 	
 	generar(clase){
@@ -212,7 +217,7 @@ class Juego{
 	buscarTestPorId(id){
 		for(let requerimiento of this.requerimientos)
 			if (requerimiento.test.id = id)
-				return requerimiento.test.id
+				return requerimiento.test
 		throw `${id} no encontrado.`
 	}
 	
@@ -524,8 +529,13 @@ class Test extends General{
 	}
 	
 	ejecutar(){		//Desarrollo del Componente
-		
-		console.log("PENDIENTE")
+		//Comprobamos si los componentes de las historias del Requerimiento asociado al test están en el entorno de explotación
+		for(let historia of this.requerimiento.historias)
+			for(let componente of historia.componentes)
+				if (!juego.explotacion.has(componente))
+					return
+		this.requerimiento.estado = 'completado'
+		this.requerimiento.div.classList.add('completado');
 	}
 }
 Test.indice = 1

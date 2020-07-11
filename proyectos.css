@@ -85,6 +85,9 @@ div.requerimiento {
 	border: 1px solid green;
 }
 
+div.requerimiento.completado {
+	background-color: green;
+}
 div.equipo{
 	border: 1px solid green;
 	margin: 0.5em;

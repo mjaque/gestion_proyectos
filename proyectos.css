@@ -3,129 +3,191 @@ body{
 	background-color: #2B4A6F;
 	color: #cccccc;
 }
-
+h2{
+	font-weight: normal;
+	font-size: 1.2em;
+	text-decoration: none;
+	margin: 0px;
+}
 div.contenedor_requerimiento{
 	display: flex;
 	flex-direction: row;
-	
-	border: 1px solid #333333;
+	/*border: 1px dotted #333333;*/
 }
 
 div.contenedor_historia{
 	display: flex;
 	flex-direction: row;
-	
-	border: 1px dotted #333333;
+	/*border: 1px dotted #333333;*/
+}
+
+#divSprints, #divEquipos, #divDiario{
+	width: 75%;
+	display: flex;
+	flex-direction: row;
+	border-radius:0.7em;
+	padding: 0.5em;
+	margin: 0.5em;
 }
 
 #divSprints{
-	display: flex;
-	flex-direction: row;
-	border: 2px solid grey;
-	margin: 0.5em;
-	padding: 0.5em;
-}
-
-#divDesarrollo{
-	display: flex;
-	flex-direction: row;
-	border: 2px solid blue;
-	margin: 0.5em;
-	padding: 0.5em;
-}
-
-#divIntegracion{
-	border: 2px solid yellow;
-	display: flex;
-	justify-content: center;
-  	align-items: center;
-	min-width: 5em;
-}
-
-#divRepositorio, #divExplotacion{
-	border: 2px solid blue;
-	display: flex;
-	justify-content: center;
-  	align-items: center;
-	min-width: 5em;
-}
-
-#divTests{
-	display: flex;
-	flex-direction: column;
-	border: 2px solid pink;
-	margin: 0.5em;
-	padding: 0.5em;
+	border: 1px solid #2B4A6F;
 }
 
 #divEquipos{
+	border: 1px solid #cccccc;
+	min-height: 3em;
+}
+
+#divDiario{
+	border: 1px solid #cccccc;
+	min-height: 3em;
+}
+
+
+#divDesarrollo{
+	width: 75%;
 	display: flex;
 	flex-direction: row;
-	border: 2px solid green;
+	/*border: 1px dotted grey;*/
+	margin: 0;
+	padding: 0;
+}
+
+#divRequerimientos{
+	width: 50%;
+	justify-content: center;
+  	align-items: center;
+	/*border: 1px dotted grey;*/
+	margin: 0;
+	padding: 0;
+}
+
+#contenedor_integracion{
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  	/*border: 1px dotted grey;*/
+	margin: 0;
+	padding: 0;
+}
+
+#divIntegracion{
+	text-align:center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+#divTests{
+	width: 10%;
+	display: flex;
+	flex-direction: column;
+	margin: 0.5em;
+	padding: 0.5em;	
+	/*border: 1px dotted grey;*/
+	margin: 0;
+	padding: 0;
+}
+
+#divRepositorio, #divProduccion{
+	border: 2px solid #cccccc;
+	border-radius:0.7em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+  	align-items: center;
+	min-width: 5em;
+	min-height: 3em;
+}
+
+#icono_integracion{
+	font-size:8em;
+}
+
+#contenedor_diario{
+	float: right;
+	min-width: 20%;
+}
+
+div.sprint, div.requerimiento, div.historia, div.componente, div.testSuite, div.equipo{
+	white-space: nowrap;
+}
+
+div.requerimiento, div.historia, div.componente, div.testSuite{
 	margin: 0.5em;
 	padding: 0.5em;
+	height: 5em;
+	min-width: 4em;	
+	border: 0.3em solid;
+	border-radius: 0.5em;
+	background-color: #555555;
 }
 
 div.sprint{
-	border: 1px solid gray;
+	border: 1px solid #553400;
 	margin: 0.2em;
 	padding: 0.2em;
-	background-color: grey;
+	background-color: #555555;
 }
 
 div.sprint.activo{
-	background-color: lime;
+	background-color: #ffddaa;
+	color: #553400;
 	cursor: pointer;
 }
 
 div.requerimiento {
-	margin: 0.5em;
-	padding: 0.5em;
-	min-height: 3em;
-	border: 1px solid green;
+	width: 30%;
+	border-color: #448F30;
+}
+
+div.testSuite{
+	border-color: #448F30;
 }
 
 div.requerimiento.completado {
 	background-color: green;
 }
+
 div.equipo{
-	border: 1px solid green;
 	margin: 0.5em;
 	padding: 0.5em;
-	background-color: green;
+	background-color: #cccccc;
+	border-radius: 50%;
+	width: 2em;
+	height: 2em;
+	color: #2B4A6F;
 	cursor: pointer;
 }
 
 div.historias{
-	border: 2px solid red;
-	margin: 0.3em;
-	padding: 0.3em;
+	/*border: 1px dotted grey;*/
+	width: 70%;
+	margin: 0;
+	padding: 0;
 }
 
 div.historia{
-	border: 2px solid red;
-	margin: 0.1em;
-	padding: 0.1em;
-
+	border-color: #AA7E39;
 }
 
 div.componentes{
-	border: 2px solid black;
-	margin: 0.3em;
-	padding: 0.3em;
+	/*border: 1px dotted grey;*/
+	width: 50%;
 }
 
 div.componente{
-	border: 2px solid red;
-	margin: 0.3em;
-	padding: 0.3em;
+	border-color: #A33643;
 }
 
-div.testSuite{
-	border: 2px solid black;
-	margin: 0.3em;
-	padding: 0.3em;
+#divProduccion div.componente, #divRepositorio div.componente{
+	/*border: 1px dotted grey;*/
+	width: inherit;
+	height: inherit;
 }
+
 
 /* Material Design Icons - https://material.io */
 @font-face {

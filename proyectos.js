@@ -69,15 +69,15 @@ class Juego{
 		for(let componente of this.repositorio)
 			this.explotacion.add(componente)
 		//Quitamos los componentes del entorno de explotación y los volvemos a poner
-		let divExplotacion = document.getElementById('divExplotacion')
-		while(divExplotacion.childNodes.length > 2)	//Dejamos la imagen
-			divExplotacion.removeChild(divExplotacion.lastChild)
+		let divProduccion = document.getElementById('divProduccion')
+		while(divProduccion.childNodes.length > 0)	//Dejamos la imagen
+			divProduccion.removeChild(divProduccion.lastChild)
 		for(let componente of this.explotacion){
 			//Quitamos el equipo del clone
 			let clon = componente.div.cloneNode(true)
 			if (clon.getElementsByClassName('equipo').length > 0)
 				clon.removeChild(clon.getElementsByClassName('equipo')[0])
-			divExplotacion.appendChild(clon)
+			divProduccion.appendChild(clon)
 		}
 	}
 	
@@ -97,6 +97,10 @@ class Juego{
 		divPrincipal.id = 'divPrincipal'
 		
 		//Sprints
+		let tituloTiempo = document.createElement('h2')
+		divPrincipal.appendChild(tituloTiempo)
+		tituloTiempo.appendChild(crearIcono('update'))
+		tituloTiempo.appendChild(document.createTextNode(' Tiempo'))
 		let divSprints = document.createElement('div')
 		divPrincipal.appendChild(divSprints)
 		divSprints.id = 'divSprints'
@@ -105,7 +109,23 @@ class Juego{
 			divSprints.appendChild(sprint.crearDiv(i++ == 0))
 		}
 		
+		//Diario
+		let divContenedorDiario = document.createElement('div')
+		divPrincipal.appendChild(divContenedorDiario)
+		divContenedorDiario.id = 'contenedor_diario'
+		let tituloDiario = document.createElement('h2')
+		divContenedorDiario.appendChild(tituloDiario)
+		tituloDiario.appendChild(crearIcono('edit'))
+		tituloDiario.appendChild(document.createTextNode(' Diario'))
+		let divDiario = document.createElement('div')
+		divContenedorDiario.appendChild(divDiario)
+		divDiario.id = 'divDiario'
+		
 		//Desarrollo: Requerimientos-Historias-Componentes
+		let tituloTrabajo = document.createElement('h2')
+		divPrincipal.appendChild(tituloTrabajo)
+		tituloTrabajo.appendChild(crearIcono('keyboard'))
+		tituloTrabajo.appendChild(document.createTextNode(' Trabajo'))
 		let divDesarrollo = document.createElement('div')
 		divPrincipal.appendChild(divDesarrollo)
 		divDesarrollo.id = 'divDesarrollo'
@@ -116,27 +136,22 @@ class Juego{
 			divRequerimientos.appendChild(requerimiento.crearDiv())
 			
 		//Div de Integracion
+		let divContenedorIntegración = document.createElement('div')
+		divDesarrollo.appendChild(divContenedorIntegración)
+		divContenedorIntegración.id = 'contenedor_integracion'
+		
+		let tituloProduccion = document.createElement('h2')
+		divContenedorIntegración.appendChild(tituloProduccion)
+		tituloProduccion.appendChild(crearIcono('location_city'))
+		tituloProduccion.appendChild(document.createTextNode(' Producción'))
+		
+		let divProduccion = document.createElement('div')
+		divContenedorIntegración.appendChild(divProduccion)
+		divProduccion.id = 'divProduccion'
+		
 		let divIntegracion = document.createElement('div')
-		divDesarrollo.appendChild(divIntegracion)
+		divContenedorIntegración.appendChild(divIntegracion)
 		divIntegracion.id = 'divIntegracion'
-		
-		let divRepositorio = document.createElement('div')
-		divRepositorio.id = 'divRepositorio'
-		divIntegracion.appendChild(divRepositorio)
-		let img1 = document.createElement('img')
-		divRepositorio.appendChild(img1)
-		img1.setAttribute('src', 'repositorio.svg')
-		
-		let img2 = document.createElement('img')
-		divIntegracion.appendChild(img2)
-		img2.setAttribute('src', 'arrow.svg')
-		
-		let divExplotacion = document.createElement('div')
-		divExplotacion.id = 'divExplotacion'
-		divIntegracion.appendChild(divExplotacion)
-		let img3 = document.createElement('img')
-		divExplotacion.appendChild(img3)
-		img3.setAttribute('src', 'entorno_explotacion.svg')
 		
 		//Drop
 		divIntegracion.ondragover = function(evento){
@@ -153,7 +168,20 @@ class Juego{
   			let equipo = juego.buscarEquipoPorId(idEquipo)
   			equipo.asignadoA = 'integracion'
 		}
-
+		
+		let flecha = crearIcono('arrow_upward')
+		flecha.id = 'icono_integracion'
+		divIntegracion.appendChild(flecha)
+		
+		let tituloRepositorio = document.createElement('h2')
+		divContenedorIntegración.appendChild(tituloRepositorio)
+		tituloRepositorio.appendChild(crearIcono('public'))
+		tituloRepositorio.appendChild(document.createTextNode(' Repositorio'))
+		
+		let divRepositorio = document.createElement('div')
+		divContenedorIntegración.appendChild(divRepositorio)
+		divRepositorio.id = 'divRepositorio'
+		
 		//Tests
 		let divTests = document.createElement('div')
 		divDesarrollo.appendChild(divTests)
@@ -162,9 +190,14 @@ class Juego{
 			divTests.appendChild(requerimiento.test.crearDiv())
 
 		//Equipos
+		let tituloEquipo = document.createElement('h2')
+		divPrincipal.appendChild(tituloEquipo)
+		tituloEquipo.appendChild(crearIcono('people'))
+		tituloEquipo.appendChild(document.createTextNode(' Equipo'))
+		
 		let divEquipo = document.createElement('div')
+		divPrincipal.appendChild(divEquipo)
 		divEquipo.id = 'divEquipos'
-		document.getElementsByTagName('body')[0].appendChild(divEquipo)
 		for(let equipo of this.equipos)
 			divEquipo.appendChild(equipo.crearDiv())
 			
@@ -216,7 +249,7 @@ class Juego{
 	
 	buscarTestPorId(id){
 		for(let requerimiento of this.requerimientos)
-			if (requerimiento.test.id = id)
+			if (requerimiento.test.id == id)
 				return requerimiento.test
 		throw `${id} no encontrado.`
 	}
@@ -270,7 +303,7 @@ class Sprint extends General{
 	desactivar(){
 		this.activo = false
 		this.div.classList.remove('activo')
-		this.onclick = null;
+		this.onclick = null
 	}
 }
 Sprint.indice = 1
@@ -326,7 +359,7 @@ class Requerimiento extends General{
 		
 		//Borrado
 		while (this.divHistorias.firstChild) {
-    		this.divHistorias.removeChild(this.divHistorias.lastChild);
+    		this.divHistorias.removeChild(this.divHistorias.lastChild)
   		}
   		
 		this.historias = juego.generar(Historia)
@@ -336,7 +369,7 @@ class Requerimiento extends General{
 			this.divHistorias.appendChild(historia.crearDiv())
 		}
 			
-		this.div.appendChild(document.createTextNode(' -?'));
+		this.div.appendChild(document.createTextNode(' -?'))
 		this.estado = 'terminado'
 		/*if(Math.random() < conf.requerimientos.p_error)
 			this.estado = 'erróneo'
@@ -420,7 +453,7 @@ class Historia extends General{
 
 		//Borrado del divComponentes
 		while (this.divComponentes.firstChild) {
-    		this.divComponentes.removeChild(this.divComponentes.lastChild);
+    		this.divComponentes.removeChild(this.divComponentes.lastChild)
   		}
   		
 		this.componentes = juego.generar(Componente)
@@ -430,7 +463,7 @@ class Historia extends General{
 			this.divComponentes.appendChild(componente.crearDiv())
 		}
 			
-		this.div.appendChild(document.createTextNode(' -?'));
+		this.div.appendChild(document.createTextNode(' -?'))
 		this.estado = 'terminado'
 	}
 }
@@ -504,7 +537,7 @@ class Test extends General{
 		this.div = document.createElement('div')
 		this.div.id = this.id
 		this.div.classList.add('testSuite')
-		this.div.appendChild(crearIcono('test'))
+		this.div.appendChild(crearIcono('help_outline'))
 		this.div.appendChild(document.createTextNode(this.div.id))
 		
 		//Drop
@@ -528,14 +561,14 @@ class Test extends General{
 		return this.div
 	}
 	
-	ejecutar(){		//Desarrollo del Componente
+	ejecutar(){		//Ejecución del Test
 		//Comprobamos si los componentes de las historias del Requerimiento asociado al test están en el entorno de explotación
 		for(let historia of this.requerimiento.historias)
 			for(let componente of historia.componentes)
 				if (!juego.explotacion.has(componente))
 					return
 		this.requerimiento.estado = 'completado'
-		this.requerimiento.div.classList.add('completado');
+		this.requerimiento.div.classList.add('completado')
 	}
 }
 Test.indice = 1

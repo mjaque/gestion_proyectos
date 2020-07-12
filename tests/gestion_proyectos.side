@@ -26,12 +26,12 @@
       "command": "assertText",
       "target": "//h1",
       "targets": [],
-      "value": "Gestión de Proyectos"
+      "value": "Simulador de Proyectos"
     }, {
       "id": "cd70b771-fc86-4e84-8275-67e393c4be4c",
       "comment": "",
       "command": "assertTitle",
-      "target": "Gestión de Proyectos",
+      "target": "Simulador de Proyectos",
       "targets": [],
       "value": ""
     }, {
@@ -1295,7 +1295,7 @@
       "id": "a92a9329-9eae-4422-ae1c-39fa1f4cbb08",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1419,7 +1419,7 @@
       "id": "b4330f43-a546-400a-a17b-f0d3c77864a4",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1438,7 +1438,7 @@
       "id": "b310d013-f786-44a1-8f1d-b5ea6597439a",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1450,7 +1450,7 @@
       "id": "4662d8d7-4f97-4e69-8b8c-f2d3e0e53923",
       "comment": "",
       "command": "storeXpathCount",
-      "target": "xpath=//div[@id='divExplotacion']",
+      "target": "xpath=//div[@id='divProduccion']",
       "targets": [],
       "value": "numComponentes"
     }, {
@@ -1562,7 +1562,7 @@
       "id": "75e355fa-0a81-4cea-a6ef-5a910a48d622",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1574,7 +1574,7 @@
       "id": "2ee6ecbd-c6ef-41b9-94b8-0922c0098b88",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C2']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C2']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1705,7 +1705,7 @@
       "id": "35f2d74b-c6fa-4401-977d-be8a24de0389",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1717,7 +1717,7 @@
       "id": "73de0035-19cd-403c-bdf4-ec0c0a84ba6b",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divExplotacion']/div[@id='C2']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='C2']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1755,6 +1755,209 @@
       "value": ""
     }, {
       "id": "f81d3c43-bfdf-4501-beab-8e856f81fc50",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "19e5fa1b-d73b-4ca8-a0ef-2d802ba1be58",
+    "name": "T5-1 Finalizar completando",
+    "commands": [{
+      "id": "c5ed6f65-f7ea-4ddb-a478-266c3a406ec8",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f16f4dc1-c215-46c9-91c9-3b180a10440b",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e1a0dda-d6fc-4403-aac1-e7ba0fca3b74",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "c1538aaa-96f0-4c71-8b57-2e4b3c1a7ea8",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=R2"
+    }, {
+      "id": "aed0750e-39c2-4ed5-9ffc-032ef7c228b0",
+      "comment": "",
+      "command": "click",
+      "target": "id=S1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3558a1e5-0834-4e92-8608-351a83617f23",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "e4a1cdb1-0b12-4b08-8879-00c3adbcb8d1",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=H2"
+    }, {
+      "id": "60f209b9-4f29-44ff-95f4-e0387b8bdd21",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=H3"
+    }, {
+      "id": "249320e0-1166-404b-8886-48c47e418291",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=H4"
+    }, {
+      "id": "eb15fabc-fca9-4f26-9de4-35f0113048a9",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "12116172-051f-4caa-9513-44167a43f1a9",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "3396dad4-45b4-48e4-abec-6c183da7fea1",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C2"
+    }, {
+      "id": "2985bfbf-568a-474a-9c3c-f0c4c321a19b",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=C3"
+    }, {
+      "id": "d647f5a5-dad9-4e6c-ab66-f7f7b050d816",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=C4"
+    }, {
+      "id": "167d151b-ec59-4fc3-bf18-22d467390997",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E5",
+      "targets": [],
+      "value": "id=C5"
+    }, {
+      "id": "fa3fb1b2-5e89-4fe3-aa8f-a4977ac5f796",
+      "comment": "",
+      "command": "click",
+      "target": "id=S3",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8f8326aa-65f3-440a-b634-aa2a5257803d",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C6"
+    }, {
+      "id": "9e81a2ba-c49b-4d75-8c2b-2a11fc45eb19",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C7"
+    }, {
+      "id": "ef90c60c-643d-40b5-a3c6-c9116bbb9bd3",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=C8"
+    }, {
+      "id": "ee29576e-ff6f-4b26-b89d-48f84673d2e5",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=divIntegracion"
+    }, {
+      "id": "1240cddf-0530-4ea0-a99e-1bfe15845b53",
+      "comment": "",
+      "command": "click",
+      "target": "id=S4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f9ee1bf0-e568-43dc-89a8-88e36fc82ccd",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=T1"
+    }, {
+      "id": "4c7974a6-d663-43df-8c0b-68d44a80cb5a",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=T2"
+    }, {
+      "id": "06f774c9-80a3-416d-b6fa-aa5236bc3070",
+      "comment": "",
+      "command": "click",
+      "target": "id=S5",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "eb50e92e-245b-4553-9f6b-e4506fea7550",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0cdb3e27-ed6e-4561-8009-292988d31512",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R2'][@class=\"requerimiento completado\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "71d40379-bdd6-4817-a244-62a4969a1398",
       "comment": "",
       "command": "close",
       "target": "",

@@ -1784,6 +1784,17 @@
       ],
       "value": ""
     }, {
+      "id": "2e9e8fb7-ccbb-4faa-9586-d91193a87a50",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-contenido > span",
+      "targets": [
+        ["css=.modal-contenido > span", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'×')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
       "id": "9e1a0dda-d6fc-4403-aac1-e7ba0fca3b74",
       "comment": "",
       "command": "dragAndDropToObject",
@@ -1957,7 +1968,270 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "048e8741-4a29-4351-9b2f-62e2af19cf19",
+      "comment": "",
+      "command": "assertText",
+      "target": "xpath=//div[@class='modal-contenido']/p",
+      "targets": [],
+      "value": "Has completado el 100% del proyecto"
+    }, {
       "id": "71d40379-bdd6-4817-a244-62a4969a1398",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "df83f63d-4b15-4037-8c96-c6835294d368",
+    "name": "T5-1 Finalizar por Tiempo",
+    "commands": [{
+      "id": "4c4f8f3c-014c-4062-a531-bc2e192d2b63",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost/gestion_proyectos/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "98ddef81-20b6-4ee6-9940-62f71b203b9d",
+      "comment": "",
+      "command": "click",
+      "target": "css=button",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d25c767-72e1-4422-977d-904f8e874c56",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-contenido > span",
+      "targets": [
+        ["css=.modal-contenido > span", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'×')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e0c1f42-1a26-4a33-8aa2-cdeaa1ec0502",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=R1"
+    }, {
+      "id": "d98b6620-892e-4a71-91ed-d5d6da84ec79",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=R2"
+    }, {
+      "id": "72ed5374-2f08-4809-8445-852e9dd8f15e",
+      "comment": "",
+      "command": "click",
+      "target": "id=S1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "85fdfb94-ec67-44a9-b8c2-833da4b9a5ca",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=H1"
+    }, {
+      "id": "6ea186c6-5120-42fd-abd5-82fdb1d7a698",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=H2"
+    }, {
+      "id": "48d7f911-99f8-43b2-9f88-6bfb4fd1a4ec",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=H3"
+    }, {
+      "id": "ee3cce02-df97-4f6c-928f-276da41ce2ac",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=H4"
+    }, {
+      "id": "39839629-0ed2-42d1-b96d-4e751969846b",
+      "comment": "",
+      "command": "click",
+      "target": "id=S2",
+      "targets": [
+        ["css=button", "css:finder"],
+        ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "47ce9dc7-9c25-49e5-b288-148b0045e6cc",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C1"
+    }, {
+      "id": "4d323af4-1c08-4843-bb69-a9fe1be24f77",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C2"
+    }, {
+      "id": "8153bced-6881-4793-a998-790eb20f285c",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=C3"
+    }, {
+      "id": "fddca627-9d2c-4774-9db0-9689e91ef296",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=C4"
+    }, {
+      "id": "a5803110-5d1d-4b08-abd1-bb81c8080884",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E5",
+      "targets": [],
+      "value": "id=C5"
+    }, {
+      "id": "25eb26f9-991c-47f2-8784-47c23ee70d70",
+      "comment": "",
+      "command": "click",
+      "target": "id=S3",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6353022b-8932-4aeb-a7ab-0760a553547d",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=C6"
+    }, {
+      "id": "7d2fc521-27e2-4df6-a1b8-acf9f3adcf9f",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=C7"
+    }, {
+      "id": "22287d27-dd01-4028-a22d-3ff318057fcd",
+      "comment": "",
+      "command": "//dragAndDropToObject",
+      "target": "id=E3",
+      "targets": [],
+      "value": "id=C8"
+    }, {
+      "id": "437ac620-0785-4e95-b444-95f91e4c290e",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E4",
+      "targets": [],
+      "value": "id=divIntegracion"
+    }, {
+      "id": "e13a65c9-73ff-4e14-a11a-16bbd29b2db3",
+      "comment": "",
+      "command": "click",
+      "target": "id=S4",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8a05c151-9b4a-4063-ad59-5d19a3d23a2b",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E1",
+      "targets": [],
+      "value": "id=T1"
+    }, {
+      "id": "b22e5f06-6c25-4628-8e54-31e750d26a37",
+      "comment": "",
+      "command": "dragAndDropToObject",
+      "target": "id=E2",
+      "targets": [],
+      "value": "id=T2"
+    }, {
+      "id": "a04a14d7-5c14-4d9f-9058-65b6fbdb8aab",
+      "comment": "",
+      "command": "click",
+      "target": "id=S5",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "806c8206-82a6-483d-a9df-e28d75bc3bfb",
+      "comment": "",
+      "command": "click",
+      "target": "id=S6",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a6e51da7-06ca-44bf-b5ed-5d7e942b5fdc",
+      "comment": "",
+      "command": "click",
+      "target": "id=S7",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe201bde-c155-4b8f-a4b7-a2e10aeba410",
+      "comment": "",
+      "command": "click",
+      "target": "id=S8",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "63f340d4-ee48-4742-835b-b6e22ae1a563",
+      "comment": "",
+      "command": "click",
+      "target": "id=S9",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80ace691-5681-47d3-8682-5edda1d2e677",
+      "comment": "",
+      "command": "click",
+      "target": "id=S10",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1527d27c-14d2-4b8a-bc3b-f3a7e819b6eb",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d0ebf024-90e4-4814-9d02-7ea44fd04634",
+      "comment": "",
+      "command": "//assertElementPresent",
+      "target": "xpath=//div[@id='R2'][@class=\"requerimiento completado\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "51d00b3e-22e0-4d64-8bfd-0892ae478b84",
+      "comment": "",
+      "command": "assertText",
+      "target": "xpath=//div[@class='modal-contenido']/p",
+      "targets": [],
+      "value": "No te ha dado tiempo. Has completado el 50% del proyecto"
+    }, {
+      "id": "692f962c-5d96-48e3-980f-e7d7df3ad780",
       "comment": "",
       "command": "close",
       "target": "",

@@ -29,7 +29,7 @@ let conf = {
 }
 
 function alCargar(){
-	document.getElementsByTagName('button')[0].onclick = juego.iniciar.bind(juego)	
+	document.getElementsByTagName('button')[0].onclick = juego.iniciar.bind(juego)
 }
 
 class Juego{
@@ -45,6 +45,7 @@ class Juego{
 		let divInicial = document.getElementById('divInicial')
 		divInicial.parentNode.removeChild(divInicial)
 		this.dibujar()
+		modal.mostrar('Empieza el proyecto')
 	}
 	
 	ejecutar(sprint){
@@ -55,13 +56,26 @@ class Juego{
 				else
 					equipo.asignadoA.ejecutar()
 		
-		//Cambio de Sprint
 		sprint.desactivar()
+		
+		//Calculamos el % completado del proyectos
+		let completados = 0
+		for(let requerimiento of this.requerimientos)
+			if (requerimiento.estado == 'completado')
+				completados += 1 
+		
+		//Comprobamos si se han completado todos los requerimientos
+		if (completados == this.requerimientos.length){
+			modal.mostrar('Has completado el 100% del proyecto')
+			return
+		}
+		
+		//Cambio de Sprint
 		let proximoSprint = sprint.div.nextSibling
 		if (proximoSprint != null)
 			juego.buscarSprintPorId(proximoSprint.id).activar()
 		else
-			juego.terminarPorTiempo()
+			modal.mostrar('No te ha dado tiempo. Has completado el ' + (100.0*completados/this.requerimientos.length) + '% del proyecto')		
 	}
 	
 	integrar(){
@@ -573,6 +587,34 @@ class Test extends General{
 }
 Test.indice = 1
 
+class Modal{
+	constructor(){
+		this.div = document.createElement('div')
+		this.div.classList.add('modal')
+		this.divContenido = document.createElement('div')
+		this.div.appendChild(this.divContenido)		
+		this.divContenido.classList.add('modal-contenido')
+		this.spanCerrar = document.createElement('span')
+		this.divContenido.appendChild(this.spanCerrar)
+		this.spanCerrar.appendChild(document.createTextNode('×'))
+		this.spanCerrar.onclick = this.cerrar.bind(this)
+		this.p = document.createElement('p')
+		this.divContenido.appendChild(this.p)
+		
+		document.getElementsByTagName('body')[0].appendChild(this.div)
+	}
+	
+	mostrar(texto){
+		while (this.p.firstChild)
+			this.p.removeChild(this.p.firstChild)
+		this.p.appendChild(document.createTextNode(texto))
+		this.div.style.display = "block"
+	}
+	
+	cerrar(){
+		this.div.style.display = 'none'
+	}
+}
 
 /**
 	Crea un icono de Material Icons de Google
@@ -618,4 +660,5 @@ function aleatorio(min, max){
 
 //PROGRAMA PRINCIPAL
 let juego = new Juego()
+let modal = new Modal()
 

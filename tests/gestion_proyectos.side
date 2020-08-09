@@ -889,6 +889,32 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "e8bfddc0-77d5-4ddc-b8c3-cd611b7c6bb6",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectNivel",
+      "targets": [
+        ["id=selectNivel", "id"],
+        ["css=#selectNivel", "css:finder"],
+        ["xpath=//select[@id='selectNivel']", "xpath:attributes"],
+        ["xpath=//div[@id='divInicial']/p[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e79d573-a392-431e-b789-7444e7eaea74",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=(//option[@value='0'])[2]", "xpath:attributes"],
+        ["xpath=//select[@id='selectNivel']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Nivel 0 - Estudiante de DAW')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
       "id": "a25357e8-72a5-4a76-b031-3fb803b17df0",
       "comment": "",
       "command": "click",
@@ -898,6 +924,17 @@
         ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
         ["xpath=//button", "xpath:position"],
         ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "41ff9455-dae3-4a49-a766-93be27129803",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-contenido > span",
+      "targets": [
+        ["css=.modal-contenido > span", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'×')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -951,7 +988,7 @@
       "id": "bdee0055-45b0-429e-bed8-c99c286cc90b",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divRepositorio']/div[@id='C1']",
+      "target": "xpath=//div[@id='divRepositorio']/div[@id='repo_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1102,6 +1139,39 @@
       "targets": [],
       "value": ""
     }, {
+      "id": "932bbfeb-573c-4cd1-bdb7-99929b8b1eee",
+      "comment": "",
+      "command": "click",
+      "target": "id=selectNivel",
+      "targets": [
+        ["id=selectNivel", "id"],
+        ["css=#selectNivel", "css:finder"],
+        ["xpath=//select[@id='selectNivel']", "xpath:attributes"],
+        ["xpath=//div[@id='divInicial']/p[2]/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e87f3ec-d180-43ec-aae5-80fb1edf6434",
+      "comment": "",
+      "command": "select",
+      "target": "id=selectNivel",
+      "targets": [],
+      "value": "label=Nivel 0 - Estudiante de DAW"
+    }, {
+      "id": "66186e65-2b6e-4b73-a9fb-3846c63cba6a",
+      "comment": "",
+      "command": "click",
+      "target": "css=option:nth-child(2)",
+      "targets": [
+        ["css=option:nth-child(2)", "css:finder"],
+        ["xpath=(//option[@value='0'])[2]", "xpath:attributes"],
+        ["xpath=//select[@id='selectNivel']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Nivel 0 - Estudiante de DAW')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
       "id": "b5edf07e-09bc-4e35-89e2-4e0b0bdc092a",
       "comment": "",
       "command": "click",
@@ -1111,6 +1181,17 @@
         ["xpath=//div[@id='divInicial']/p[2]/button", "xpath:idRelative"],
         ["xpath=//button", "xpath:position"],
         ["xpath=//button[contains(.,'Iniciar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "adbedd3a-9118-4eab-84f8-030edece4573",
+      "comment": "",
+      "command": "click",
+      "target": "css=.modal-contenido > span",
+      "targets": [
+        ["css=.modal-contenido > span", "css:finder"],
+        ["xpath=//span", "xpath:position"],
+        ["xpath=//span[contains(.,'×')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -1164,7 +1245,7 @@
       "id": "a876a0ed-7937-4d83-8f4f-92ca5354d5d6",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divRepositorio']/div[@id='C1']",
+      "target": "xpath=//div[@id='divRepositorio']/div[@id='repo_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1183,7 +1264,7 @@
       "id": "17a9632d-0572-4d4e-98de-5a5c1cdfc36c",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divRepositorio']/div[@id='C1']",
+      "target": "xpath=//div[@id='divRepositorio']/div[@id='repo_C1']",
       "targets": [],
       "value": ""
     }, {
@@ -1295,7 +1376,7 @@
       "id": "a92a9329-9eae-4422-ae1c-39fa1f4cbb08",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1419,7 +1500,7 @@
       "id": "b4330f43-a546-400a-a17b-f0d3c77864a4",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1438,7 +1519,7 @@
       "id": "b310d013-f786-44a1-8f1d-b5ea6597439a",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1562,7 +1643,7 @@
       "id": "75e355fa-0a81-4cea-a6ef-5a910a48d622",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1574,7 +1655,7 @@
       "id": "2ee6ecbd-c6ef-41b9-94b8-0922c0098b88",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C2']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C2']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1600,7 +1681,7 @@
       "id": "7487fd7e-3d7c-4257-8533-92f2acd4279e",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {
@@ -1705,7 +1786,7 @@
       "id": "35f2d74b-c6fa-4401-977d-be8a24de0389",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C1']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C1']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1717,7 +1798,7 @@
       "id": "73de0035-19cd-403c-bdf4-ec0c0a84ba6b",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='divProduccion']/div[@id='C2']",
+      "target": "xpath=//div[@id='divProduccion']/div[@id='produccion_C2']",
       "targets": [
         ["css=#H1 > .material-icons", "css:finder"],
         ["xpath=//div[@id='H1']/span", "xpath:idRelative"],
@@ -1750,7 +1831,7 @@
       "id": "a4acd408-fd11-4350-a907-8407fc2559f3",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {
@@ -1957,14 +2038,14 @@
       "id": "eb50e92e-245b-4553-9f6b-e4506fea7550",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {
       "id": "0cdb3e27-ed6e-4561-8009-292988d31512",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='R2'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R2'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {
@@ -2213,14 +2294,14 @@
       "id": "1527d27c-14d2-4b8a-bc3b-f3a7e819b6eb",
       "comment": "",
       "command": "assertElementPresent",
-      "target": "xpath=//div[@id='R1'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R1'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {
       "id": "d0ebf024-90e4-4814-9d02-7ea44fd04634",
       "comment": "",
       "command": "//assertElementPresent",
-      "target": "xpath=//div[@id='R2'][@class=\"requerimiento completado\"]",
+      "target": "xpath=//div[@id='R2'][@class=\"requerimiento correcto\"]",
       "targets": [],
       "value": ""
     }, {

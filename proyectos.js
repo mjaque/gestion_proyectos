@@ -2,15 +2,16 @@
 
 window.onload = alCargar
 
-let conf = {
+let nivel = 0
+let conf = []
+conf[0] = {			//Estudiante de DAW
 	'sprints' : {
 		'media' : 10,
 		'desviacion_tipica' : 0
 	}
 	,'requerimientos' : {
 		'media' : 2,
-		'desviacion_tipica' : 0,
-		'p_error': 0
+		'desviacion_tipica' : 0
 	},
 	'historias' : {
 		'media' : 2,
@@ -27,18 +28,97 @@ let conf = {
 		'desviacion_tipica' : 0
 	}
 }
+conf[1] = {			//Roockie
+	'sprints' : {
+		'media' : 8,
+		'desviacion_tipica' : 0.5
+	}
+	,'requerimientos' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5
+	},
+	'historias' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5,
+		'p_error': 0
+	},
+	'componentes' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5,
+		'p_error': 0
+	},
+	'equipos' : {
+		'media' : 5,
+		'desviacion_tipica' : 0.5
+	}
+}
+conf[2] = {			//Novato pagacafés
+	'sprints' : {
+		'media' : 15,
+		'desviacion_tipica' : 1
+	}
+	,'requerimientos' : {
+		'media' : 5,
+		'desviacion_tipica' : 1
+	},
+	'historias' : {
+		'media' : 3,
+		'desviacion_tipica' : 1,
+		'p_error': 0
+	},
+	'componentes' : {
+		'media' : 3,
+		'desviacion_tipica' : 1,
+		'p_error': 0
+	},
+	'equipos' : {
+		'media' : 7,
+		'desviacion_tipica' : 1
+	}
+}
+conf[3] = {			//Programador Muy Junior 
+	'sprints' : {
+		'media' : 8,
+		'desviacion_tipica' : 0.5
+	}
+	,'requerimientos' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5
+	},
+	'historias' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5,
+		'p_error': 0.1
+	},
+	'componentes' : {
+		'media' : 2,
+		'desviacion_tipica' : 0.5,
+		'p_error': 0.5
+	},
+	'equipos' : {
+		'media' : 5,
+		'desviacion_tipica' : 0.5
+	}
+}
 
 function alCargar(){
-	document.getElementsByTagName('button')[0].onclick = juego.iniciar.bind(juego)
+	document.getElementsByTagName('button')[0].onclick = function(){
+		let nivel = document.getElementById('selectNivel').value
+		conf = conf[nivel]
+		juego = new Juego()
+		juego.iniciar(nivel)
+	}
 }
 
 class Juego{
-	constructor(){
+	constructor(nivel){
+		this.nivel = nivel
 		this.sprints = this.generar(Sprint)
 		this.requerimientos = this.generar(Requerimiento)
 		this.equipos = this.generar(Equipo)
 		this.repositorio = new Set()
-		this.explotacion = new Set()
+		this.produccion = new Set()
+		this.diario = new Diario()
 	}
 	
 	iniciar(){
@@ -46,49 +126,62 @@ class Juego{
 		divInicial.parentNode.removeChild(divInicial)
 		this.dibujar()
 		modal.mostrar('Empieza el proyecto')
+		this.diario.escribir('Inicio del proyecto')
+		this.diario.escribir('Sprint S1:')
 	}
 	
 	ejecutar(sprint){
 		for(let equipo of this.equipos)
 			if (equipo.asignadoA != null)
-				if (equipo.asignadoA == 'integracion')
-					juego.integrar()
-				else
+				if (equipo.asignadoA == 'integracion'){
+					this.integrar()
+					this.diario.escribir('- '+equipo.id+' realiza la integración.')
+				}
+				else{
 					equipo.asignadoA.ejecutar()
+					this.diario.registrar(equipo)
+				}
 		
 		sprint.desactivar()
 		
 		//Calculamos el % completado del proyectos
 		let completados = 0
 		for(let requerimiento of this.requerimientos)
-			if (requerimiento.estado == 'completado')
+			if (requerimiento.estado == 'correcto')
 				completados += 1 
 		
 		//Comprobamos si se han completado todos los requerimientos
 		if (completados == this.requerimientos.length){
 			modal.mostrar('Has completado el 100% del proyecto')
+			this.diario.escribir('Proyecto finalizado al 100%')
 			return
 		}
 		
 		//Cambio de Sprint
 		let proximoSprint = sprint.div.nextSibling
-		if (proximoSprint != null)
-			juego.buscarSprintPorId(proximoSprint.id).activar()
-		else
-			modal.mostrar('No te ha dado tiempo. Has completado el ' + (100.0*completados/this.requerimientos.length) + '% del proyecto')		
+		if (proximoSprint != null){
+			this.buscarSprintPorId(proximoSprint.id).activar()
+			this.diario.escribir('Sprint '+proximoSprint.id+':')
+		}
+		else{
+			let porcentaje = 100.0*completados/this.requerimientos.length
+			modal.mostrar('No te ha dado tiempo. Has completado el ' + porcentaje + '% del proyecto')
+			this.diario.escribir('Proyecto finalizado al ' + porcentaje + ' %')
+		}	
 	}
 	
 	integrar(){
-	//Pasamos los componentes del repositorio al entorno de explotación
+	//Pasamos los componentes del repositorio al entorno de produccion
 		for(let componente of this.repositorio)
-			this.explotacion.add(componente)
+			this.produccion.add(componente)
 		//Quitamos los componentes del entorno de explotación y los volvemos a poner
 		let divProduccion = document.getElementById('divProduccion')
 		while(divProduccion.childNodes.length > 0)	//Dejamos la imagen
 			divProduccion.removeChild(divProduccion.lastChild)
-		for(let componente of this.explotacion){
+		for(let componente of this.produccion){
 			//Quitamos el equipo del clone
 			let clon = componente.div.cloneNode(true)
+			clon.id = 'produccion_' + clon.id
 			if (clon.getElementsByClassName('equipo').length > 0)
 				clon.removeChild(clon.getElementsByClassName('equipo')[0])
 			divProduccion.appendChild(clon)
@@ -124,16 +217,7 @@ class Juego{
 		}
 		
 		//Diario
-		let divContenedorDiario = document.createElement('div')
-		divPrincipal.appendChild(divContenedorDiario)
-		divContenedorDiario.id = 'contenedor_diario'
-		let tituloDiario = document.createElement('h2')
-		divContenedorDiario.appendChild(tituloDiario)
-		tituloDiario.appendChild(crearIcono('edit'))
-		tituloDiario.appendChild(document.createTextNode(' Diario'))
-		let divDiario = document.createElement('div')
-		divContenedorDiario.appendChild(divDiario)
-		divDiario.id = 'divDiario'
+		divPrincipal.appendChild(this.diario.div)
 		
 		//Desarrollo: Requerimientos-Historias-Componentes
 		let tituloTrabajo = document.createElement('h2')
@@ -382,13 +466,6 @@ class Requerimiento extends General{
 			historia.requerimiento = this
 			this.divHistorias.appendChild(historia.crearDiv())
 		}
-			
-		this.div.appendChild(document.createTextNode(' -?'))
-		this.estado = 'terminado'
-		/*if(Math.random() < conf.requerimientos.p_error)
-			this.estado = 'erróneo'
-		else
-			this.estado = 'correcto'*/
 	}
 }
 Requerimiento.indice = 1
@@ -420,7 +497,7 @@ class Historia extends General{
 	constructor(){
 		super()
 		this.requerimiento = null	//requerimiento al que pertenece la historia
-		this.componentes = []
+		this.componentes = []		
 		this.divComponentes = null
 	}
 	
@@ -462,9 +539,14 @@ class Historia extends General{
 	}
 	
 	ejecutar(){		//Diseño de la Historia
-		//Si ya ha sido ejecutado, no se repite
+		//Si ya ha sido ejecutado, no se repite. Si fuera errónea, se habría eliminado sus componentes
 		if (this.componentes.length > 0) return
 
+		//Quitamos el icono de estado, si lo hay
+		if (this.div.children.item(1).classList.contains('material-icons'))
+			this.div.removeChild(this.div.children.item(1))
+		this.div.classList.remove('error')
+		
 		//Borrado del divComponentes
 		while (this.divComponentes.firstChild) {
     		this.divComponentes.removeChild(this.divComponentes.lastChild)
@@ -476,9 +558,6 @@ class Historia extends General{
 			componente.historia = this
 			this.divComponentes.appendChild(componente.crearDiv())
 		}
-			
-		this.div.appendChild(document.createTextNode(' -?'))
-		this.estado = 'terminado'
 	}
 }
 Historia.indice = 1
@@ -521,22 +600,29 @@ class Componente extends General{
 		//Si ya está en el respositorio, no hacemos nada
 		if (juego.repositorio.has(this)) return
 		
-		//TODO: quitar el icono de resultado si ya tiene uno. O cambiarlo
-		/*
+		//Quitamos el icono de estado, si lo hay
+		if (this.div.children.item(1).classList.contains('material-icons'))
+			this.div.removeChild(this.div.children.item(1))
+		
 		if (Math.random() < conf.componentes.p_error){
-			this.div.appendChild(crearIcono('error'))
+			this.div.insertBefore(crearIcono('error'), this.div.children.item(1))
+			this.div.classList.add('error')
+			//this.div.classList.remove('correcto')
 			this.estado = 'erroneo'
 		}
-		else{*/
-			this.div.appendChild(crearIcono('done'))
+		else{
+			//this.div.classList.add('correcto')
+			this.div.classList.remove('error')
+			this.div.insertBefore(crearIcono('done'), this.div.children.item(1))
 			this.estado = 'correcto'	
 			juego.repositorio.add(this)
 			let divRepositorio = document.getElementById('divRepositorio')
 			let clon = this.div.cloneNode(true)
+			clon.id = 'repo_' + clon.id	//Cambiamos su id
 			//Quitamos el equipo del clone
 			clon.removeChild(clon.getElementsByClassName('equipo')[0])
 			divRepositorio.appendChild(clon)
-		//}
+		}
 	}
 }
 Componente.indice = 1
@@ -571,21 +657,81 @@ class Test extends General{
   			let equipo = juego.buscarEquipoPorId(idEquipo)
   			equipo.asignadoA = juego.buscarTestPorId(id)
 		}
-		
 		return this.div
 	}
 	
 	ejecutar(){		//Ejecución del Test
+		if (this.requerimiento.estado == 'correcto') return	//Ya está revisado
+		
 		//Comprobamos si los componentes de las historias del Requerimiento asociado al test están en el entorno de explotación
+		juego.diario.escribir('Probando ' + this.id)
 		for(let historia of this.requerimiento.historias)
 			for(let componente of historia.componentes)
-				if (!juego.explotacion.has(componente))
+				if (!juego.produccion.has(componente))
 					return
-		this.requerimiento.estado = 'completado'
-		this.requerimiento.div.classList.add('completado')
+		//El requerimiento está completo, veamos si está correcto
+		for(let historia of this.requerimiento.historias){
+			if (historia.estado == 'correcto') continue
+			if (Math.random() < conf.historias.p_error){
+				historia.div.insertBefore(crearIcono('error'), historia.div.children.item(1))
+				historia.div.classList.add('error')
+				historia.estado = 'error'
+				//Eliminamos sus componentes
+				let divProduccion = document.getElementById('divProduccion')
+				let divRepositorio = document.getElementById('divRepositorio')
+				for (let componente of historia.componentes){
+					juego.produccion.delete(componente)
+					divProduccion.removeChild(document.getElementById('produccion_' + componente.id))
+					juego.repositorio.delete(componente)
+					divRepositorio.removeChild(document.getElementById('repo_' + componente.id))
+					historia.divComponentes.removeChild(document.getElementById(componente.id))
+				}
+				historia.componentes = []
+				return	//No podemos comprobar el resto
+			}
+			else{
+				historia.estado = 'correcto'
+				historia.div.insertBefore(crearIcono('done'), historia.div.children.item(1))
+				//historia.div.classList.add('correcto')
+			}
+		}
+			
+		this.requerimiento.estado = 'correcto'
+		this.requerimiento.div.classList.add('correcto')
 	}
 }
 Test.indice = 1
+
+class Diario{
+	constructor(){
+		this.div = document.createElement('div')
+		this.div.id = 'contenedor_diario'
+		let titulo = document.createElement('h2')
+		this.div.appendChild(titulo)
+		titulo.appendChild(crearIcono('edit'))
+		titulo.appendChild(document.createTextNode(' Diario'))
+		this.divContenido = document.createElement('div')
+		this.div.appendChild(this.divContenido)
+		this.divContenido.id = 'divDiario'
+	}
+	escribir(texto){
+		let p = document.createElement('p')
+		p.appendChild(document.createTextNode(texto))
+		this.divContenido.appendChild(p)
+	}
+	registrar(equipo){
+		let texto = '- ' + equipo.id + ' '
+		let verbo = 'ejecuta'
+		if (equipo.asignadoA instanceof Requerimiento)
+			verbo = 'analiza'
+		if (equipo.asignadoA instanceof Historia)
+			verbo = 'diseña'
+		if (equipo.asignadoA instanceof Componente)
+			verbo = 'desarrolla'
+		texto += verbo + ' ' + equipo.asignadoA.id
+		this.escribir(texto)
+	}
+}
 
 class Modal{
 	constructor(){
@@ -659,6 +805,6 @@ function aleatorio(min, max){
 
 
 //PROGRAMA PRINCIPAL
-let juego = new Juego()
+let juego
 let modal = new Modal()
 

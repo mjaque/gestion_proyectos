@@ -24,7 +24,6 @@ div.contenedor_historia{
 #divSprints, #divEquipos, #divDiario{
 	width: 75%;
 	display: flex;
-	flex-direction: row;
 	border-radius:0.7em;
 	padding: 0.5em;
 	margin: 0.5em;
@@ -32,18 +31,25 @@ div.contenedor_historia{
 
 #divSprints{
 	border: 1px solid #2B4A6F;
+	flex-direction: row;
 }
 
 #divEquipos{
 	border: 1px solid #cccccc;
 	min-height: 3em;
+	flex-direction: row;
 }
 
 #divDiario{
 	border: 1px solid #cccccc;
 	min-height: 3em;
+	flex-direction: column;
 }
 
+#divDiario p{
+	font-size: 0.8em;
+	margin: 0px;
+}
 
 #divDesarrollo{
 	width: 75%;
@@ -147,10 +153,6 @@ div.testSuite{
 	border-color: #448F30;
 }
 
-div.requerimiento.completado {
-	background-color: green;
-}
-
 div.equipo{
 	margin: 0.5em;
 	padding: 0.5em;
@@ -188,6 +190,13 @@ div.componente{
 	height: inherit;
 }
 
+.error{
+	background-color: red !important;
+}
+
+.correcto{
+	background-color: green !important;
+}
 
 /* Material Design Icons - https://material.io */
 @font-face {
